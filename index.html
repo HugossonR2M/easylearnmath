@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Math</title>
+        <link rel="stylesheet" href="./styles/styles.css">  
+        <script async src="./Javascript/index.js"></script> 
+    </head>
+    <body>
+        <h1>hello, world of math!!</h1>  <h4 id='date'></h4>
+        <form action="#" method="post" class="mathForm" id="mathForm">
+            <fieldset>
+            <p>Välj typ:&nbsp;
+                <input type="radio" name="mathtype" value="*"> Addition<br>
+                <input type="radio" name="mathtype" value="/"> Division<br>
+                <input type="radio" name="mathtype" value="+"> Multiplikation<br>
+                <input type="radio" name="mathtype" value="-"> Subtraktion<br>
+            </p>
+            <p>Välj svårighetsgrad</p>
+            <br>
+
+            <input type="checkbox" name="easy" id="easy" value="1" onchange='getEasy()'> Lätt <br>
+            <input type="checkbox" name="medium" id="medium" value="2" onchange='getMedium()'> Medium<br>
+            <input type="checkbox" name="hard" id="hard" value="3" onchange='getHard()' > Svårt<br>
+            
+            <br>
+            <p>
+
+                <input type="text" name="Value1" id="Value1" disabled="true">
+               <input type="text" id="math" name="total" class="num" value="" disabled="true" readonly="readonly">
+                <input type="text" name="Value2" id="Value2" disabled="true">
+            </p>
+            <br>
+            <p>
+                <input type="text" name="sum" id="sum">
+            </p>
+            <br>
+            <p>
+                <input type="button" name="btnCorrect" id="btnCorrect" value="Rätta" onclick='check()'>
+            </p>
+            </fieldset>
+        </form>
+        <form action="">
+     
+          </form>
+        
+           <br>
+           <br>
+
+        <script type="text/javascript">
+                var counter = 0;
+            // to remove from global namespace
+            (function() {
+                
+                var sz = document.forms['mathForm'].elements['mathtype'];
+                
+                for (var i=0, len=sz.length; i<len; i++) {
+                    sz[i].onclick = function() {
+                        this.form.elements.total.value = this.value;
+                    };
+                }
+                
+                // disable submission of all forms on this page
+                for (var i=0, len=document.forms.length; i<len; i++) {
+                    document.forms[i].onsubmit = function() { return false; };
+                }
+            
+            }());
+
+
+            function getEasy() {
+            if(document.getElementById("easy").checked === true){
+               document.getElementById("Value1").value = Math.floor((Math.random() * 10));
+               document.getElementById("Value2").value = Math.floor((Math.random() * 10));
+            };
+            }
+            function getMedium() {
+            if(document.getElementById("medium").checked === true){
+               document.getElementById("Value1").value = Math.floor((Math.random() * 1000));
+               document.getElementById("Value2").value = Math.floor((Math.random() * 1000));
+            };
+            }
+            function getHard() {
+            if(document.getElementById("hard").checked === true){
+               document.getElementById("Value1").value = Math.floor((Math.random() * 10000));
+               document.getElementById("Value2").value = Math.floor((Math.random() * 10000));
+            };
+            }
+            function check() {
+            var v1 = document.getElementById("Value1");
+            var v2 = document.getElementById("Value2");
+            var sum = document.getElementById("sum");
+            var math = document.getElementById("math");
+            var val1 = parseInt(v1.value);
+            var val2 = parseInt(v2.value);
+            var tot = parseInt(sum.value);
+            var win = false;
+    
+                if(math.value === "+")
+                {
+                    if(val1 + val2 === tot)
+                    {
+                        counter++;
+                        alert("Rätt,"+ counter +" i rad " +"! Här kommer nästa.")
+                        win = true;
+                    }
+                    else 
+                    {
+                        alert("Fel, försök igen");
+                        counter = 0;
+                      
+                    }
+                }
+                else if(math.value === ("-"))
+                {
+                     if(val1 - val2 === tot)
+                     {
+                        counter++;
+                        alert("Rätt,"+ counter +" i rad " +"! Här kommer nästa.")
+                        win = true;
+                    }
+                    else 
+                    {
+                        alert("Fel, försök igen");
+                        counter = 0;
+                     
+                    }
+
+                }
+                else if(math.value === ("/"))
+                {
+                    if(val1 / val2 === tot)
+                    {
+                        counter++;
+                        alert("Rätt,"+ counter +" i rad " +"! Här kommer nästa.")
+                        win = true;
+                    }
+                    else 
+                    {
+                        alert("Fel, försök igen");
+                        counter = 0;
+                     
+                    }
+                }
+                else if(math.value === ("*"))
+                {
+                     if(val1 * val2 === tot)
+                     {
+                        counter++;
+                        alert("Rätt,"+ counter +" i rad " +"! Här kommer nästa.")
+                        win = true;
+                    }
+                    else 
+                    {
+                        alert("Fel, försök igen");
+                        counter = 0;
+                       
+                    }
+
+                }
+                if(win === true)
+                {
+                     if(document.getElementById("easy").checked === true){
+                            getEasy();
+                        }
+                        else if(document.getElementById("medium").checked === true)
+                        {
+                            getMedium();
+                        }
+                        else if(document.getElementById("hard").checked === true)
+                        {
+                            getHard();
+                        }
+                }
+            };
+               
+
+            </script>
+    </body>
+</html>
